@@ -4,5 +4,6 @@ export type Drug = {
     drugName: string,
     price: number,
     count: number,
-    storeId: string
+    storeId: string,
+    description: string
 }
