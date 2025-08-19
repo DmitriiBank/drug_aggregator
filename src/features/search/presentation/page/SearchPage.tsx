@@ -6,20 +6,19 @@ import {TitleText} from "../components/TitleText.tsx";
 import {CardItem} from "../components/card_item/CardItem.tsx";
 import {SearchInput} from "../components/form_controls/SearchInput.tsx";
 import {SubmitButton} from "../components/form_controls/SubmitButton.tsx";
-import {useEffect, useState} from "react";
-import {repository} from "../../data/SearchDrugLocalRepository.ts";
+import {useEffect} from "react";
 import type {Drug} from "../../domain/Drug.ts";
+import {useDispatch, useSelector} from "react-redux";
+import type {AppDispatch, RootState} from "../../../../redux/store.ts";
+import {searchByName} from "../redux/searchSlice.ts";
 
 
 export const SearchPage = () => {
-    const [drugList, setDrugList] = useState<Drug[]>([])
+     const drugList = useSelector<RootState, Drug[]>(state => state.drug.list)
 
+    const dispatch = useDispatch<AppDispatch>()
     useEffect(() => {
-        repository.searchByName("").then(
-            data => {
-                setDrugList(data)
-            }
-        )
+        dispatch(searchByName(''))
     }, []);
 
     return (
@@ -39,7 +38,11 @@ export const SearchPage = () => {
                 {/*</h2>*/}
                 {
                     drugList.map(item => (
-                        <CardItem price={item.price.toString()} title={item.drugName} description={item.description} />
+                        <CardItem
+                            price={item.price.toString()}
+                            title={item.drugName}
+                            description={item.description}
+                        />
                     ))
                 }
 

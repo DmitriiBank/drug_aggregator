@@ -11,13 +11,13 @@ export const CardItem = ({title, description, price }: CardItemProps) => {
         <div className="border border-blue-400 rounded-2xl p-8 bg-white shadow-sm p-4 m-2">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 ">
                 <div>
-                    <h2 className="text-blue-400 font-bold text-2xl uppercase mb-4"> Standard</h2>
-                    <p className="text-green-600 text-lg">Most calendars</p>
+                    <h2 className="text-blue-400 font-bold text-2xl uppercase mb-4"> {title}</h2>
+                    <p className="text-green-600 text-lg">{description}</p>
                 </div>
 
                 <div className="text-center">
                     <div className="flex items-start justify-center text-4xl font-bold text-blue-400">
-                        <span>20</span>
+                        <span>{price}</span>
                         <span className="text-2xl text-blue-400 mt-1 ml-1">$</span>
                     </div>
                     <p className="text-blue-400 text-lg mb-2"> Per Month</p>
